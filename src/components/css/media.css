@@ -29,6 +29,7 @@
         width: 100%;
         flex-direction: column;
         padding: 0px;
+        height: auto;
 
     }
 
@@ -46,6 +47,11 @@
     .navbar-ul_visible{
         left: 0;
         position: fixed;
+    }
+
+    .navbar-li{
+        height: auto;
+        width: auto;
     }
 
     .responsive_navbar{
