@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 import React, { useState } from 'react'
 import { ethers, BigNumber } from 'ethers'
 import charityDogsClub from '../Web3/abi.json'
@@ -11,6 +12,7 @@ import banner2 from '../../images/2036569998.png'
 const charityDogsClubAddress = "0x053abB888946d56635f795DDA97e6a7fF6217Fd5"
 
 const Mint = ({accounts, setAccounts}) => {
+
 
     const [mintAmount, setMintAmount] = useState(1);
     const [supply, setSupply] = useState()
@@ -62,8 +64,11 @@ const Mint = ({accounts, setAccounts}) => {
         ); 
 
         try {
-          const response = await contract.buy(BigNumber.from(mintAmount), 
+
+          const response = await contract.buy(BigNumber.from(mintAmount),
+
           {
+
             gasLimit: 200000,
             value: ethers.utils.parseEther((0.04 * mintAmount).toString())
           });
