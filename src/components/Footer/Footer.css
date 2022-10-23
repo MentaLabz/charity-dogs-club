@@ -10,6 +10,7 @@
     text-decoration: none;
     padding: 10px;
     font-family: 'Raleway', sans-serif;
+    font-weight: 600;
 }
 
 .footer-a:hover{
@@ -72,4 +73,27 @@
 
 div.container-footer4{
     width: calc(100% - 20%);
+}
+
+.footer-h2{
+    color: #ffffff;
+}
+
+.footer-icon{
+    color: #ffffff;
+    font-size: 20px;
+}
+
+.footer-box1{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.footer-img2{
+    width: 30px;
+}
+
+.footer-img3{
+    width: 30px;
 }
