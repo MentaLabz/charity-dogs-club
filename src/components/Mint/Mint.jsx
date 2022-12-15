@@ -13,6 +13,7 @@ const charityDogsClubAddress = "0x053abB888946d56635f795DDA97e6a7fF6217Fd5";
 const Mint = ({ accounts, setAccounts }) => {
   const [mintAmount, setMintAmount] = useState(1);
   const [supply, setSupply] = useState();
+  const [mintMsg, setMintMsg] = useState();
 
   const isConnected = Boolean(accounts[0]);
 
@@ -61,8 +62,18 @@ const Mint = ({ accounts, setAccounts }) => {
               value: (getPrice * mintAmount).toString(),
             });
             console.log("response: ", JSON.stringify(response));
+
+            setMintMsg("Success, waiting confirmation.")
+
           } catch (err) {
             console.log("error: " + JSON.stringify(err));
+            const errorMint = await err;
+
+            const errMint = {
+              reason: errorMint.reason,
+            };
+
+            setMintMsg(errMint.reason);
           }
         };
         getGas();
@@ -81,6 +92,16 @@ const Mint = ({ accounts, setAccounts }) => {
     if (mintAmount >= 10) return;
     setMintAmount(mintAmount + 1);
   };
+
+  const mintMessage = () => {
+    if (msgToMint === msgToMint) {
+      return msgToMint;
+    }
+  };
+
+  useEffect(() => {
+    mintMessage();
+  }, []);
 
   return (
     <div className="container-mint" id="Mint">
