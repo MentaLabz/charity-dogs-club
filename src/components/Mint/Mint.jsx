@@ -1,5 +1,6 @@
+/* eslint-disable no-self-compare */
 /* eslint-disable react-hooks/rules-of-hooks */
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { ethers, BigNumber } from "ethers";
 import charityDogsClub from "../Web3/abi.json";
 import "../css/media.css";
@@ -13,9 +14,10 @@ const charityDogsClubAddress = "0x053abB888946d56635f795DDA97e6a7fF6217Fd5";
 const Mint = ({ accounts, setAccounts }) => {
   const [mintAmount, setMintAmount] = useState(1);
   const [supply, setSupply] = useState();
-  const [mintMsg, setMintMsg] = useState();
+  const [mintMsg, setMintMsg] = useState("");
 
   const isConnected = Boolean(accounts[0]);
+  const isMsgMint = Boolean(mintMsg);
 
   async function getSupply() {
     if (window.ethereum) {
@@ -63,10 +65,8 @@ const Mint = ({ accounts, setAccounts }) => {
             });
             console.log("response: ", JSON.stringify(response));
 
-            setMintMsg("Success, waiting confirmation.")
-
+            setMintMsg("Success, waiting confirmation.");
           } catch (err) {
-            console.log("error: " + JSON.stringify(err));
             const errorMint = await err;
 
             const errMint = {
@@ -74,6 +74,7 @@ const Mint = ({ accounts, setAccounts }) => {
             };
 
             setMintMsg(errMint.reason);
+            console.log("error: " + JSON.stringify(err));
           }
         };
         getGas();
@@ -94,8 +95,8 @@ const Mint = ({ accounts, setAccounts }) => {
   };
 
   const mintMessage = () => {
-    if (msgToMint === msgToMint) {
-      return msgToMint;
+    if (mintMsg === mintMsg) {
+      return mintMsg;
     }
   };
 
@@ -134,8 +135,11 @@ const Mint = ({ accounts, setAccounts }) => {
                 </button>
               </div>
             ) : (
-              <p className="mint-p fadeIn">You must be connected to Mint</p>
+              <div>
+                <p className="mint-p fadeIn">You must be connected to Mint</p>
+              </div>
             )}
+            <p className="mint-p fadeIn">{mintMessage()}</p>
           </div>
         </div>
         <div className="container-mint8 fadeIn">
