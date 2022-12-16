@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable no-self-compare */
 /* eslint-disable react-hooks/rules-of-hooks */
 import React, { useEffect, useState } from "react";
@@ -17,7 +18,6 @@ const Mint = ({ accounts, setAccounts }) => {
   const [mintMsg, setMintMsg] = useState("");
 
   const isConnected = Boolean(accounts[0]);
-  const isMsgMint = Boolean(mintMsg);
 
   async function getSupply() {
     if (window.ethereum) {
